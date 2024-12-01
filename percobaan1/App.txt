@@ -1,0 +1,54 @@
+import React, {useEffect, useState} from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+
+  // useEffect(() => {
+  //   let timer;
+  //   if(isButtonDisabled){
+  //     timer =setTimeout(() =>{   
+  //     setIsButtonDisabled(false);     
+  //     },3000);
+  //   }
+
+  //   return()=>{
+  //     if(timer){
+  //       clearTimeout(timer);
+  //     }
+  //   };
+  // }, [isButtonDisabled]);
+
+  useEffect(() => {
+    setIsButtonDisabled(true)
+  }, []);
+
+  const handleButtonPress = () => {
+    setCount(count + 1);
+    setIsButtonDisabled(true);
+  };
+
+  return(
+    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+      <Text style={{ color: 'black'}}>Kamu telah klik sebanyak {count} kali</Text>
+      <TouchableOpacity
+      onPress={handleButtonPress}
+      disabled={isButtonDisabled}
+      style={{
+        marginTop: 20,
+        backgroundColor: isButtonDisabled ? 'rgba(45, 133, 200, 0.2)' : 'rgba(68, 103, 150, 0.9)',
+        height: 20,
+        width: 100,
+        borderRadius: 8,
+      }}
+      >
+        <Text style={{ color:'white', textAlign: 'center'}}>
+          Klik disini
+        </Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+export default App;
